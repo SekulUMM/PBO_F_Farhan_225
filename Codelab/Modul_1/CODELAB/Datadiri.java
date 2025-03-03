@@ -1,7 +1,9 @@
+package Codelab.Modul_1.CODELAB;
+
 import java.util.Scanner;
 import java.time.LocalDate;
 
-public class DataDiri {
+public class Datadiri {
     public static void main(String[] args) {
         // Object scanner
         Scanner scanner = new Scanner(System.in);
