@@ -3,6 +3,7 @@ import java.time.LocalDate;
 
 public class DataDiri {
     public static void main(String[] args) {
+        // Object scanner
         Scanner scanner = new Scanner(System.in);
 
         // Input
