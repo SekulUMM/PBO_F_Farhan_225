@@ -1,5 +1,5 @@
 //tujuan file
-package Tugas_PBO.TUGAS_1;
+package Tugas_PBO;
 
 //fungsi
 import java.util.Scanner;
