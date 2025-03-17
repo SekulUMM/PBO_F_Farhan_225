@@ -5,7 +5,7 @@ package Tugas_PBO;
 import java.util.Scanner;
 
 //class name percabangan
-public class cabang {
+public class Main {
     //menggunakan static void sebagai default
     public static void main (String[] args) {
         //membuat line untuk pengisian input
