@@ -2,29 +2,26 @@ package Tugas_PBO;
 
 import java.util.Scanner;
 
-public class Admin {
+public class Admin extends User {
     private String username = "Admin225";
     private String password = "Password225";
 
-    public boolean login(Scanner scanner) {
-        System.out.print("Masukkan username: ");
-        String inputUsername = scanner.nextLine();
-        System.out.print("Masukkan password: ");
-        String inputPassword = scanner.nextLine();
+    public Admin() {
+        super("Admin Default", "0000"); // Nama dan nim tidak digunakan untuk login admin
+    }
 
-        if (inputUsername.startsWith(username) && inputPassword.startsWith(password)) {
-            String nimAkhir = inputUsername.substring(5);
-            if (inputPassword.equals("Password" + nimAkhir)) {
-                System.out.println("Login Admin berhasil!");
-                return true;
-            } else {
-                System.out.println("Login gagal! Username atau password salah.");
-                return false;
-            }
-        } else {
-            System.out.println("Login gagal! Username atau password salah.");
-            return false;
+    @Override
+    public boolean login(String inputUsername, String inputPassword) {
+        if (inputUsername.equals(username) && inputPassword.equals(password)) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public void displayInfo() {
+        System.out.println("Login Admin berhasil!");
+        System.out.println("Username: " + username);
     }
 }
 
