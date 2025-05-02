@@ -1,3 +1,3 @@
 🅵🅰🆁🅷🅰🅽
 
-Hasil dari repository pada setiap modul dapat di download pada menu release.
+Hasil dari repository "Hasil Tugas" pada setiap modul dapat di download pada menu release.
