@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Admin extends User implements AdminActions {
 
-    public Admin(String username, String password) {
-        super(username, password); // Login pakai data dari konstruktor
+    public Admin(String username, String password, Number isAdmin) {
+        super(username, password, isAdmin); // Login pakai data dari konstruktor
     }
 
     @Override

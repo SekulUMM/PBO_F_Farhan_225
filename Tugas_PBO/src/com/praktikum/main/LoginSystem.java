@@ -17,6 +17,8 @@ public class LoginSystem {
         System.out.print("Pilih nomor: ");
         int pilih = sc.nextInt();
         sc.nextLine(); // buang newline
+        Admin admin = new Admin("Admin225", "Password225", 1);
+
 
         if (pilih == 1) {
             // Login Admin
@@ -25,7 +27,6 @@ public class LoginSystem {
             System.out.print("Masukkan Password: ");
             String password = sc.nextLine();
 
-            Admin admin = new Admin("Admin225", "Password225");
             if (admin.login(username, password)) {
                 currentUser = admin;
             } else {

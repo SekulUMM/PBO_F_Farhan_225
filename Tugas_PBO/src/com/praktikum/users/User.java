@@ -6,14 +6,14 @@ public abstract class User {
     private String nama;        // Untuk Mahasiswa
     private String nim;         // Untuk Mahasiswa
 
-    // Konstruktor untuk Mahasiswa
+    // Konstruktor untuk Mahasiswa (pakai nama & nim)
     public User(String nama, String nim) {
         this.nama = nama;
         this.nim = nim;
     }
 
     // Konstruktor untuk Admin (pakai username & password)
-    public User(String username, String password, boolean isAdmin) {
+    public User(String username, String password, Number isAdmin) {
         this.username = username;
         this.password = password;
     }
