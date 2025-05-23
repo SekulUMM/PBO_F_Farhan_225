@@ -1,49 +1,72 @@
 package Tugas_PBO.src.com.praktikum.users;
 
-import Tugas_PBO.src.com.praktikum.actions.AdminActions;
 import java.util.Scanner;
+import Tugas_PBO.src.com.praktikum.main.LoginSystem;
+import Tugas_PBO.src.com.praktikum.models.Item;
+import java.util.InputMismatchException;
 
-public class Admin extends User implements AdminActions {
+public class Admin extends User {
+    private int id;
 
-    public Admin(String username, String password, Number isAdmin) {
-        super(username, password, isAdmin); // Login pakai data dari konstruktor
+    public Admin(String username, String password, int id) {
+        super(username, password);
+        this.id = id;
     }
 
     @Override
-    public boolean login(String inputUser, String inputPass) {
-        return username.equals(inputUser) && password.equals(inputPass);
+    public boolean login(String u, String p) {
+        return getUsername().equals(u) && getPassword().equals(p);
     }
 
     @Override
     public void displayAppMenu() {
         Scanner sc = new Scanner(System.in);
-        int choice;
-        do {
-            System.out.println("=== Menu Admin ===");
-            System.out.println("1. Kelola Laporan Barang");
-            System.out.println("2. Kelola Data Mahasiswa");
+        while (true) {
+            System.out.println("\n===== Menu Admin =====");
+            System.out.println("1. Lihat Semua Laporan");
+            System.out.println("2. Tandai Barang Diambil");
             System.out.println("0. Logout");
-            System.out.print("Pilih menu: ");
-            choice = sc.nextInt();
-            sc.nextLine(); // Konsumsi newline
-
-            switch (choice) {
-                case 1 -> manageItems();
-                case 2 -> manageUsers();
-                case 0 -> System.out.println("Logout berhasil.");
-                default -> System.out.println("Pilihan tidak valid.");
+            System.out.print("Pilih: ");
+            try {
+                int pilihan = sc.nextInt(); sc.nextLine();
+                switch (pilihan) {
+                    case 1:
+                        for (Item item : LoginSystem.reportedItems) {
+                            System.out.println(item.getItemName() + " - " + item.getStatus());
+                        }
+                        break;
+                    case 2:
+                        int idx = 0;
+                        for (Item item : LoginSystem.reportedItems) {
+                            if (item.getStatus().equals("Reported")) {
+                                System.out.println(idx + ". " + item.getItemName());
+                            }
+                            idx++;
+                        }
+                        System.out.print("Masukkan indeks barang: ");
+                        int i = sc.nextInt(); sc.nextLine();
+                        try {
+                            Item selected = LoginSystem.reportedItems.get(i);
+                            if (selected.getStatus().equals("Reported")) {
+                                selected.setStatus("Claimed");
+                                System.out.println("Barang telah ditandai sebagai diambil.");
+                            } else {
+                                System.out.println("Barang sudah diambil.");
+                            }
+                        } catch (IndexOutOfBoundsException e) {
+                            System.out.println("Indeks tidak valid.");
+                        }
+                        break;
+                    case 0:
+                        return;
+                    default:
+                        System.out.println("Pilihan tidak valid.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Input harus angka.");
+                sc.nextLine();
             }
-        } while (choice != 0);
-    }
-
-    @Override
-    public void manageItems() {
-        System.out.println(">> Fitur Kelola Barang Belum Tersedia <<");
-    }
-
-    @Override
-    public void manageUsers() {
-        System.out.println(">> Fitur Kelola Mahasiswa Belum Tersedia <<");
+        }
     }
 }
 
